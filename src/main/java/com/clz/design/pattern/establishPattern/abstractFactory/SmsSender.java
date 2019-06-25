@@ -1,4 +1,4 @@
-package com.clz.design.pattern.establishPattern.factory;
+package com.clz.design.pattern.establishPattern.abstractFactory;
 
 public class SmsSender implements Sender{
     public void send() {
