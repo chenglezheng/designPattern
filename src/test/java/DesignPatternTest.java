@@ -4,7 +4,15 @@ import com.clz.design.pattern.constructionPattern.adapter.interfaceAdapter.Sourc
 import com.clz.design.pattern.constructionPattern.adapter.interfaceAdapter.Sourceable;
 import com.clz.design.pattern.constructionPattern.adapter.objectAdapter.Source;
 import com.clz.design.pattern.constructionPattern.adapter.objectAdapter.Wrapper;
+import com.clz.design.pattern.constructionPattern.bridge.Bridge;
+import com.clz.design.pattern.constructionPattern.bridge.MyBridge;
+import com.clz.design.pattern.constructionPattern.bridge.Sourceable1;
+import com.clz.design.pattern.constructionPattern.bridge.Sourceable2;
+import com.clz.design.pattern.constructionPattern.composite.Tree;
+import com.clz.design.pattern.constructionPattern.composite.TreeNode;
 import com.clz.design.pattern.constructionPattern.decoration.Decorator;
+import com.clz.design.pattern.constructionPattern.facade.Computer;
+import com.clz.design.pattern.constructionPattern.proxy.Proxy;
 import com.clz.design.pattern.establishPattern.abstractFactory.Provider;
 import com.clz.design.pattern.establishPattern.abstractFactory.SendMailFactory;
 import com.clz.design.pattern.establishPattern.builder.BuilderFactory;
@@ -103,4 +111,49 @@ public class DesignPatternTest {
        2、动态的为一个对象增加功能，而且还能动态撤销。（继承不能做到这一点，继承的功能是静态的，不能动态增删。）
        缺点：产生过多相似的对象，不易排错！*/
    }
+
+   /*测试代理模式*/
+   @Test
+   public void testProxy(){
+       com.clz.design.pattern.constructionPattern.proxy.Sourceable sourceable=new Proxy();
+       sourceable.method();
+   }
+
+
+   /*测试外观模式*/
+   @Test
+    public void testFacade(){
+       Computer computer=new Computer();
+       computer.startup();
+       computer.shutdown();
+   }
+
+    /*测试桥接模式*/
+    @Test
+    public void testBridge(){
+        Bridge bridge=new MyBridge();
+
+        /*调用第一个对象*/
+        com.clz.design.pattern.constructionPattern.bridge.Sourceable sourceable=new Sourceable1();
+        bridge.setSourceable(sourceable);
+        bridge.method();
+
+        /*调用第一个对象*/
+        com.clz.design.pattern.constructionPattern.bridge.Sourceable sourceable2=new Sourceable2();
+        bridge.setSourceable(sourceable2);
+        bridge.method();
+    }
+
+    /*桥接的用意是：将抽象化与实现化解耦，使得二者可以独立变化，像我们常用的JDBC桥DriverManager一样，
+    JDBC进行连接数据库的时候，在各个数据库之间进行切换，基本不需要动太多的代码，甚至丝毫不用动，
+    原因就是JDBC提供统一接口，每个数据库提供各自的实现，用一个叫做数据库驱动的程序来桥接就行了。*/
+
+    //测试组合模式
+    @Test
+    public void testCompostie(){
+        //在TreeNode的main方法中测试
+        //合模式有时又叫部分-整体模式在处理类似树形结构的问题时比较方便
+        //将多个对象组合在一起进行操作
+    }
+
 }
